@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 class NewCreature extends Component {
   constructor(){
     super();
       this.state = {
+        redirect: false,
+        creatureId: null,
         creature: {
           name: '',
           description: ''
@@ -21,8 +24,19 @@ class NewCreature extends Component {
   }
     
   _addCreature = async (e) => {
+    e.preventDefault();
     const payload = this.state.creature
-    const res = await axios.post('/api/creatures', payload)
+    try {
+        const res = await axios.post('/api/creatures', payload)
+        console.log(res)
+        const creatureId = res.data.id;
+        const redirect = !this.state.redirect
+        this.setState({creatureId})
+        this.setState({ redirect })
+    } 
+      catch (err) {
+          console.log(err)
+      }
   }
       
   render() {
@@ -39,6 +53,9 @@ class NewCreature extends Component {
             </div>            
             <button>Add New Creature</button>
         </form>
+        {this.state.redirect && (
+          <Redirect to={`/creatures/${this.state.creatureId}`}/>
+        )}
     </div>
     )
   }

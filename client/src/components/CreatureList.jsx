@@ -45,7 +45,8 @@ class CreatureList extends Component {
             <CreatureCard key={creature.id} creature={creature} />
           ))}
         </CreatureListStyles>
-        <NewCreature/>
+
+
       </div>
     );
   }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import CreatureCard from './CreatureCard'
-import styled from 'styled-components'
+import CreatureCard from './CreatureCard';
+import NewCreature from './NewCreature';
+import styled from 'styled-components';
 
 
 const CreatureListStyles = styled.div`
@@ -37,11 +38,15 @@ class CreatureList extends Component {
 
   render() {
     return (
-      <CreatureListStyles>
-        {this.state.creatures.map((creature) => (
-          <CreatureCard key={creature.id} creature={creature} />
-        ))}
-      </CreatureListStyles>
+      <div>
+        <h1>Teh Kreaturs</h1>
+        <CreatureListStyles>
+          {this.state.creatures.map((creature) => (
+            <CreatureCard key={creature.id} creature={creature} />
+          ))}
+        </CreatureListStyles>
+        <NewCreature/>
+      </div>
     );
   }
 }

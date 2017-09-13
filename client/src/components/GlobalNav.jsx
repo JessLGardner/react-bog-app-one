@@ -59,7 +59,7 @@ class GlobalNav extends Component {
             <Link to="/"><h1>creatures! </h1></Link>
           </div>
 
-          <a href="/new"> new creatures</a>
+          <a href="/new">make a new creature</a>
 
           <div>
             <span>signed in as: {this.state.user.email} </span> |
